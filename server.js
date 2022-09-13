@@ -1,5 +1,5 @@
 const { app } = require('./app');
-const { db } = require('./utils/database.utils');
+const { db } = require('./utils/database.util');
 
 const startServer = async () => {
   try {
