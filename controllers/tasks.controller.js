@@ -27,4 +27,30 @@ const createTask = async (req, res) => {
   }
 };
 
-module.exports = { getAllTasks, createTask };
+const updateTask = async (req, res) => {
+  try {
+    const { finishDate } = req.body;
+    const { task } = req;
+
+    await task.update({ finishDate });
+
+    res.status(200).json({
+      status: 'success',
+      data: { task },
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const deleteTask = async (req, res) => {
+  try {
+    const { task } = req;
+    await task.update({ status: 'cancelled' });
+    res.status(204).json({ status: 'success' });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+module.exports = { getAllTasks, createTask, updateTask, deleteTask };
