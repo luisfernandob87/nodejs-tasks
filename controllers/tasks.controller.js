@@ -14,6 +14,31 @@ const getAllTasks = async (req, res) => {
   }
 };
 
+const getStatusTasks = async (req, res) => {
+  try {
+    const { status } = req.params;
+
+    const tasks = await Task.findOne({
+      where: { status },
+    });
+    if (!tasks) {
+      return res.status(404).json({
+        status: 'error',
+        message: 'Status not exist',
+      });
+    }
+
+    res.status(200).json({
+      status: 'success',
+      data: {
+        tasks,
+      },
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 const createTask = async (req, res) => {
   try {
     const { title, userId, startDate, limitDate } = req.body;
@@ -53,4 +78,10 @@ const deleteTask = async (req, res) => {
   }
 };
 
-module.exports = { getAllTasks, createTask, updateTask, deleteTask };
+module.exports = {
+  getAllTasks,
+  createTask,
+  updateTask,
+  deleteTask,
+  getStatusTasks,
+};

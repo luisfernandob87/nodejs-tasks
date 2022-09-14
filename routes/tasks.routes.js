@@ -5,6 +5,7 @@ const {
   getAllTasks,
   updateTask,
   deleteTask,
+  getStatusTasks,
 } = require('../controllers/tasks.controller');
 
 const { taskExists } = require('../middlewares/tasks.middlewares');
@@ -12,6 +13,8 @@ const { taskExists } = require('../middlewares/tasks.middlewares');
 const tasksRouter = express.Router();
 
 tasksRouter.get('/', getAllTasks);
+
+tasksRouter.get('/:status', getStatusTasks);
 
 tasksRouter.post('/', createTask);
 
