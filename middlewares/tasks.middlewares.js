@@ -9,6 +9,7 @@ const taskExists = async (req, res, next) => {
       { where: { status: 'active' } }
     );
 
+    // console.log(task);
     if (!task || task.status !== 'active') {
       return res.status(404).json({
         status: 'error',

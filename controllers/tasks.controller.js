@@ -57,6 +57,15 @@ const updateTask = async (req, res) => {
     const { finishDate } = req.body;
     const { task } = req;
 
+    console.log(finishDate);
+    console.log(task.dataValues.limitDate.toString());
+
+    if (finishDate < task.dataValues.limitDate.toString()) {
+      console.log('completed');
+    } else {
+      console.log('late');
+    }
+
     await task.update({ finishDate });
 
     res.status(200).json({
