@@ -18,7 +18,7 @@ const getStatusTasks = async (req, res) => {
   try {
     const { status } = req.params;
 
-    const tasks = await Task.findOne({
+    const tasks = await Task.findAll({
       where: { status },
     });
     if (!tasks) {
